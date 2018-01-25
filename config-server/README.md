@@ -12,5 +12,3 @@
 - [http://localhost:6100/user-dev.yml](http://localhost:6100/user-dev.yml)
 - [/{label}]/{application}-{profile}.properties
 - [http://localhost:6100/user-dev.properties](http://localhost:6100/user-dev.properties)
-- /{property}/{profile}
-- [http://localhost:6100/foo/dev](http://localhost:6100/foo/dev)

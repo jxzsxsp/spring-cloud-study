@@ -1,0 +1,41 @@
+version: '2'
+services:
+  rabbitmq:
+      image: rabbitmq:3-management
+      restart: always
+      ports:
+        - 15673:15672
+  eureka-server-node1:
+    image: jxzsxsp/eureka-server
+    ports:
+      - "6001:8761"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=node1"
+  eureka-server-node2:
+    image: jxzsxsp/eureka-server
+    ports:
+      - "6002:8761"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=node2"
+  eureka-server-node3:
+    image: jxzsxsp/eureka-server
+    ports:
+      - "6003:8761"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=node3"
+  config-server1:
+    image: jxzsxsp/config-server
+    ports:
+      - "6101:8888"
+  config-server2:
+    image: jxzsxsp/config-server
+    ports:
+      - "6102:8888"
+  config-client1:
+    image: jxzsxsp/config-client
+    ports:
+      - "6111:6110"
+  config-client2:
+    image: jxzsxsp/config-client
+    ports:
+      - "6112:6110"

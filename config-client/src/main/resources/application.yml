@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: 6110
   node1: eureka-server-node1
   node2: eureka-server-node2
   node3: eureka-server-node3
@@ -8,21 +8,25 @@ server:
 
 spring:
   application:
-    name: config-server
+    name: config-client
   cloud:
     config:
-      server:
-        git:
-          uri: https://github.com/jxzsxsp/spring-cloud-study/
-          search-paths: resources
-          username: your username
-          password: your password
       label: master
+      profile: dev
+      discovery:
+        enabled: true
+        serviceId: config-server
   rabbitmq:
     host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://${server.node1}:${server.eureka-server.port}/eureka/,http://${server.node2}:${server.eureka-server.port}/eureka/,http://${server.node3}:${server.eureka-server.port}/eureka/
 
+management:
+  security:
+    enabled: false

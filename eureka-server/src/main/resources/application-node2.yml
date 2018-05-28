@@ -1,5 +1,8 @@
 server:
-  port: 6002
+  port: 8761
+  node1: eureka-server-node1
+  node2: ${eureka.instance.hostname}
+  node3: eureka-server-node3
 
 eureka:
   instance:
@@ -8,7 +11,8 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://eureka-server-node1:6001/eureka/,http://eureka-server-node2:6002/eureka/,http://eureka-server-node3:6003/eureka/
+      defaultZone: http://${server.node1}:${server.port}/eureka/,http://${server.node2}:${server.port}/eureka/,http://${server.node3}:${server.port}/eureka/
+
 spring:
   profiles:
     active: node2
